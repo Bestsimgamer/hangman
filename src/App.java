@@ -22,6 +22,7 @@ public class App  extends PApplet{
     public void draw(){
         background(0);
         game.drawGuessedLetters(this);
+        game.drawGallow(this, new PVector(500,100));
     }
 
     public void keyPressed(){
