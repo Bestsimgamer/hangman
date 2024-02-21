@@ -124,26 +124,19 @@ public class HangmanTest {
     public void onlyLetterslooseLives(){
         final Hangman game = new Hangman("kitten");
 
-        //we check all non letter ascii
-        //symbols
+        //we check all unicode symbols
         assertTrue(game.isAlive());
-        for (int i = 0; i < 65; i++){
-            char specialSymbol = (char)i;
-            game.guess(specialSymbol);
+        for (int i = 0; i < 65536; i++){
+            if (i >= 65 && i <= 90 && i >= 97 && i <= 122){
+                //is a letter a-z;
+            } else if (i == 229 || i == 230 || i == 248 ||
+                       i == 297 || i == 298 || i == 197) {
+                //æ ø å Æ Ø Å
+            } else {
+                game.guess((char)i);
+            }
         }
-        assertTrue(game.isAlive());
-        for (int i = 92; i < 67; i++){
-            char specialSymbol = (char)i;
-            game.guess(specialSymbol);
-        }
-        assertTrue(game.isAlive());
-        for (int i = 123; i < 128; i++){
-            char specialSymbol = (char)i;
-            game.guess(specialSymbol);
-        }
-
-        //and all the rest
-
+           
         assertTrue(game.isAlive());
     }
 
