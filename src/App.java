@@ -27,7 +27,11 @@ public class App  extends PApplet{
 
     public void keyPressed(){
         if (key != CODED){
-            game.guess(key);
+            try {
+                game.guess(key);
+            } catch (InvalidCharacterException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

@@ -107,20 +107,20 @@ public class HangmanTest {
         final Hangman game = new Hangman("kitten");
 
         assertTrue(game.isAlive());
-        game.guess('Z');
-        game.guess('Z');
+        game.tryGuess('Z');
+        game.tryGuess('Z');
         assertTrue(game.isAlive());
-        game.guess('p');
-        game.guess('P');
+        game.tryGuess('p');
+        game.tryGuess('P');
         assertTrue(game.isAlive());
-        game.guess('q');
-        game.guess('z');
+        game.tryGuess('q');
+        game.tryGuess('z');
         assertTrue(game.isAlive());
-        game.guess('O');
+        game.tryGuess('O');
         assertTrue(game.isAlive());
-        game.guess('æ');
+        game.tryGuess('æ');
         assertTrue(game.isAlive());
-        game.guess('Å');
+        game.tryGuess('Å');
 
         assertFalse(game.isAlive());
     }
@@ -146,7 +146,12 @@ public class HangmanTest {
         //we check all unicode symbols (16 bits)
         assertTrue(game.isAlive());
         for (int i = 0; i < 65536; i++){
-            game.guess((char)i);
+            try{
+                game.guess((char)i);
+            } catch (InvalidCharacterException e){
+                //we do nothing, would be way to many
+                //symbols to print
+            }
         }
            
         assertTrue(game.isAlive());

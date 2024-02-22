@@ -3,3 +3,5 @@ bin/App.class
 bin/classes/Hangman.class
 bin/tests/HangmanTest.class
 .vscode/launch.json
+bin/classes/Hangman$1.class
+bin/classes/InvalidCharacterException.class

@@ -1,11 +1,19 @@
 package classes;
 
-import processing.core.PApplet;
-import processing.core.PVector;
+import processing.core.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Hangman {
     private String secretWord;
     private char[] guessedLetters;
+
+    private ArrayList<Character> allGuesses = new ArrayList<Character>() {
+        
+    };
 
     int lives = 6;
 
@@ -25,8 +33,34 @@ public class Hangman {
         return guessedLetters;
     }
 
-    public boolean guess(char letter){
+    //handles exceptions within hangman locally
+    //useful for tests;
+    public boolean tryGuess(char letter){
+        boolean letterInWord = false;
+        try {
+            letterInWord = guess(letter);
+        } catch (InvalidCharacterException e){
+            //do nothing only used for tests
+        }
+        return letterInWord;
+    }
+
+    public boolean guess(char letter) throws InvalidCharacterException{
         char lowerCase = Character.toLowerCase(letter);
+
+        Pattern regex = Pattern.compile("[a-zæøå]");
+        Matcher isLetter = regex.matcher(""+lowerCase);
+
+        if(!isLetter.find()){
+            throw new InvalidCharacterException("Must be a letter");
+        }
+
+        for (char c : allGuesses){
+            if (lowerCase == c){
+                throw new InvalidCharacterException("must be a new letter");
+            }
+        }
+        allGuesses.add(lowerCase);
         
         boolean letterInSecretWord = false;
         for (int i = 0; i < secretWord.length(); i++){
