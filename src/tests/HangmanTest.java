@@ -59,7 +59,7 @@ public class HangmanTest {
 
         game.guess('n');
         try{
-            assertTrue(game.getGuessedLetters()[5] == 'N');
+            assertTrue(game.getGuessedLetters()[5] == 'n');
         } catch (java.lang.AssertionError e){
             fail("should be case insensitive");
         }
@@ -98,7 +98,6 @@ public class HangmanTest {
 
         assertFalse(game.isAlive());
     }
-
 
     //if we guess the same wrong letter twice
     //we should only lose a life once.
@@ -145,9 +144,13 @@ public class HangmanTest {
         //we check all unicode symbols (16 bits)
         assertTrue(game.isAlive());
         for (int i = 0; i < 65536; i++){
-            if (i >= 65 && i <= 90 && i >= 97 && i <= 122){
+            if (i >= 65 && i <= 90 ){
                 //is a letter a-z;
-            } else if (i == 229 || i == 230 || i == 248 ||
+            } 
+            else if (i >= 97 && i <= 122) {
+                //æ ø å Æ Ø Å
+            }
+            else if (i == 229 || i == 230 || i == 248 ||
                        i == 297 || i == 298 || i == 197) {
                 //æ ø å Æ Ø Å
             } else {

@@ -1,14 +1,15 @@
 package classes;
 
 import processing.core.PApplet;
+import java.util.ArrayList;
 
 public class Hangman {
     private String secretWord;
     private char[] guessedLetters;
+    private ArrayList<Character> wrongGuesses = new ArrayList<Character>();
 
     public Hangman(String word){
         secretWord = word.toLowerCase();
-        guessedLetters = new char[secretWord.length()];
 
         //init partial word, and set all
         //letters to '_'
@@ -24,15 +25,25 @@ public class Hangman {
 
     public boolean guess(char letter){
         char lowerCase = Character.toLowerCase(letter);
-        
         boolean letterInSecretWord = false;
-        for (int i = 0; i < secretWord.length(); i++){
-          char tempChar = Character.toLowerCase(secretWord.charAt(i));
-            if (tempChar == Character.toLowerCase(letter)){
-              guessedLetters[i] = secretWord.charAt(i);
-              letterInSecretWord = true;
+
+        if (!Character.isLetter(lowerCase)){
+            return letterInSecretWord;
+        } 
+        else{
+
+            for (int i = 0; i < secretWord.length(); i++){
+                char tempChar = Character.toLowerCase(secretWord.charAt(i));
+                  if (tempChar == Character.toLowerCase(letter)){
+                    guessedLetters[i] = secretWord.charAt(i);
+                    letterInSecretWord = true;
+                  }
+                }
+            if (wrongGuesses.contains(lowerCase)== false && letterInSecretWord == false ){
+                wrongGuesses.add(lowerCase);
             }
-          }
+        }
+        
         return letterInSecretWord;
     }
 
@@ -47,6 +58,11 @@ public class Hangman {
     }
 
     public boolean isAlive(){
-        return true;
+        if(wrongGuesses.size() > 5){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
