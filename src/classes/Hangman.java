@@ -7,7 +7,7 @@ public class Hangman {
     private char[] guessedLetters;
 
     public Hangman(String word){
-        secretWord = word;
+        secretWord = word.toLowerCase();
         guessedLetters = new char[secretWord.length()];
 
         //init partial word, and set all
@@ -23,6 +23,8 @@ public class Hangman {
     }
 
     public boolean guess(char letter){
+        char lowerCase = Character.toLowerCase(letter);
+        
         boolean letterInSecretWord = false;
         for (int i = 0; i < secretWord.length(); i++){
           char tempChar = Character.toLowerCase(secretWord.charAt(i));
@@ -42,5 +44,9 @@ public class Hangman {
             p.text(guessedLetters[i], p.width/2+20*i-
                 guessedLetters.length*20/2, p.height/2);
         }
+    }
+
+    public boolean isAlive(){
+        return true;
     }
 }
