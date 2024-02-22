@@ -99,6 +99,7 @@ public class HangmanTest {
         assertFalse(game.isAlive());
     }
 
+
     //if we guess the same wrong letter twice
     //we should only lose a life once.
     @Test
@@ -136,7 +137,8 @@ public class HangmanTest {
 
     @Test
     public void onlyLetterslooseLives(){
-        final Hangman game = new Hangman("kitten");
+        //our word is the alfabet
+        final Hangman game = new Hangman("abcdefghijklmnopqrstuvwxyzæøå");
 
         //OBS haven't tested if the test works as 
         //intended, don't assume it just works...
@@ -144,14 +146,7 @@ public class HangmanTest {
         //we check all unicode symbols (16 bits)
         assertTrue(game.isAlive());
         for (int i = 0; i < 65536; i++){
-            if (i >= 65 && i <= 90 && i >= 97 && i <= 122){
-                //is a letter a-z;
-            } else if (i == 229 || i == 230 || i == 248 ||
-                       i == 297 || i == 298 || i == 197) {
-                //æ ø å Æ Ø Å
-            } else {
-                game.guess((char)i);
-            }
+            game.guess((char)i);
         }
            
         assertTrue(game.isAlive());
