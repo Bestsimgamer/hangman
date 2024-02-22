@@ -12,7 +12,7 @@ import classes.*;
 
 public class HangmanTest {
 
-    final String[] testWords = {"Kitten", "space", "fisk", "mål"};
+    final String[] testWords = {"space", "Kitten", "FISK", "Ål"};
 
     @Test
     public void charArraySet(){
@@ -157,6 +157,14 @@ public class HangmanTest {
         assertTrue(game.isAlive());
     }
 
-    //implement a test which test if we can win
-    //YOUR TEST HERE
+    @Test
+    public void canGuessAllWords(){
+        for (String word : testWords){
+            final Hangman game = new Hangman(word);
+            for (int i = 0; i < word.length(); i++){
+                game.tryGuess(word.charAt(i));
+            }
+            assertTrue(game.isWon());
+        }
+    }
 }

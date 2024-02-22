@@ -113,4 +113,14 @@ public class Hangman {
             return false;
         }
     }
+
+    public boolean isWon(){
+        for (int i = 0; i < secretWord.length(); i++){
+            if (secretWord.charAt(i) != getGuessedLetters()[i]){
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
