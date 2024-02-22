@@ -25,8 +25,9 @@ public class Hangman {
     public boolean guess(char letter){
         boolean letterInSecretWord = false;
         for (int i = 0; i < secretWord.length(); i++){
-            if (secretWord.charAt(i) == letter){
-              guessedLetters[i] = letter;
+          char tempChar = Character.toLowerCase(secretWord.charAt(i));
+            if (tempChar == Character.toLowerCase(letter)){
+              guessedLetters[i] = secretWord.charAt(i);
               letterInSecretWord = true;
             }
           }

@@ -59,7 +59,7 @@ public class HangmanTest {
 
         game.guess('n');
         try{
-            assertTrue(game.getGuessedLetters()[5] == 'n');
+            assertTrue(game.getGuessedLetters()[5] == 'N');
         } catch (java.lang.AssertionError e){
             fail("should be case insensitive");
         }
