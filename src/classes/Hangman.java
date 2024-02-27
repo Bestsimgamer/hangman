@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Hangman {
-    private String secretWord;
+    private final String secretWord;
     private char[] guessedLetters;
 
     private ArrayList<Character> allGuesses = new ArrayList<Character>() {
