@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class Hangman {
     private final String secretWord;
     private char[] guessedLetters;
@@ -94,7 +95,6 @@ public class Hangman {
         if (lives < 3) p.line(location.x, location.y+20, location.x+20, location.y);
         if (lives < 2) p.line(location.x, location.y+50, location.x-20, location.y+70);
         if (lives < 1) p.line(location.x, location.y+50, location.x+20, location.y+70);
-
         //dead
         if (!isAlive()) {
             //code for dead eyes
@@ -103,6 +103,9 @@ public class Hangman {
 
             p.line(location.x-2-3,location.y-2, location.x+2-3,location.y+2);
             p.line(location.x+2-3,location.y-2, location.x-2-3,location.y+2);
+            p.line(location.x, location.y+50, location.x, location.y+70);
+            p.circle(location.x-3, location.y+58, 5);
+            p.circle(location.x+3, location.y+58, 5);
         }
     }
 

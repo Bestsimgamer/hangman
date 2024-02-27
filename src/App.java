@@ -16,7 +16,7 @@ public class App  extends PApplet{
     }
 
     public void setup(){
-        game = new Hangman("Multiplication");
+        game = new Hangman("yayyyy");
     }
 
     public void draw(){
